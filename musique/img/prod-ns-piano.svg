@@ -1,0 +1,9 @@
+<!-- Logo SVG Prod by Noslow -->
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Casque audio -->
+  <path fill="#333" d="M12 3a9 9 0 0 0-9 9v5a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2V13a2 2 0 0 0-2-2H5v-1a7 7 0 0 1 14 0v1h-2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h1a3 3 0 0 0 3-3v-5a9 9 0 0 0-9-9z"/>
+  <!-- Note de musique -->
+  <path fill="#FF5722" d="M13 8v6.18A3 3 0 1 0 15 17V10h2V8h-4z"/>
+  <!-- Texte "N" pour Noslow -->
+  <text x="12" y="22" font-size="8" font-family="Arial" font-weight="bold" fill="#333" text-anchor="middle">N</text>
+</svg>

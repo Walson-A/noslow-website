@@ -1,47 +1,133 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noslow - Musique</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Noslow – Musique</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="header">
-      <button class="home-btn" onclick="window.location.href='../index.html'">
-        <svg width="22" height="22" fill="none" viewBox="0 0 22 22"><path fill="currentColor" d="M9.37 3.12a2.7 2.7 0 0 1 3.26 0l5.32 4.02c.67.5 1.05 1.3 1.05 2.13v6.91A3.33 3.33 0 0 1 15.67 19H6.33A3.33 3.33 0 0 1 3 16.18V9.27c0-.83.38-1.63 1.05-2.13L9.37 3.1Zm2.17 1.4a1.1 1.1 0 0 0-1.37 0L4.85 8.54a.73.73 0 0 0-.29.58v6.91c0 1.29 1.04 2.33 2.33 2.33h9.34c1.29 0 2.33-1.04 2.33-2.33V9.12a.73.73 0 0 0-.29-.58l-5.32-4.02Z"/></svg>
-        Accueil
-      </button>
-      <span style="font-size:1.12rem;font-weight:700;color:#E07000;">Musique</span>
+<body class="music-page">
+
+  <!-- APP BAR (Navigation principale) -->
+  <header class="app-bar" role="banner">
+    <div class="bar-left">
+      <a href="../index.html" class="brand" aria-label="Accueil Noslow">Noslow</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="../index.html" class="nav-link">
+          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Accueil</span>
+        </a>
+        <a href="../musique/musique.html" class="nav-link is-current">
+          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Musique</span>
+        </a>
+        <a href="../beats.html" class="nav-link">
+          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Beats</span>
+        </a>
+        <a href="../services.html" class="nav-link">
+          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Services</span>
+        </a>
+        <a href="../contact.html" class="nav-link">
+          <span class="nav-ico" aria-hidden="true"> </span><span class="nav-label">Contact</span>
+        </a>
+      </nav>
     </div>
-    <div class="container">
-        <h1>Noslow - Musique</h1>
-        <div class="top-bar">
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">Tous</button>
-                <button class="filter-btn" data-filter="projet">Projets</button>
-                <button class="filter-btn" data-filter="single">Singles</button>
-                <button class="filter-btn" data-filter="feat">Featuring</button>
-                <button class="filter-btn" data-filter="clip">Clips Vidéo</button>
-                <button class="filter-btn" data-filter="prod">Prod by Noslow</button>
-            </div>
-            <div class="sort-bar">
-                <label for="sortSelect">Trier par&nbsp;</label>
-                <select id="sortSelect">
-                    <option value="date" selected>Date de sortie</option>
-                    <option value="alpha">Alphabétique (A-Z)</option>
-                    <option value="type">Type</option>
-                </select>
-            </div>
+  </header>
+
+  <!-- HERO dernière sortie (auto – script déjà dans script.js) -->
+  <section class="hero hero-mini" id="hero-release" aria-label="Dernière sortie">
+    <div class="hero-inner">
+      <div class="hero-media">
+        <img id="hero-cover" src="" alt="Cover dernière sortie">
+      </div>
+      <div class="hero-meta">
+        <p class="hero-badge">NOUVEAUTÉ</p>
+
+        <div class="hero-heading">
+          <h1 class="hero-title" id="hero-title">Titre</h1>
+          <span class="hero-artist" id="hero-artist">Artiste</span>
         </div>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Rechercher un son, un projet...">
-        </div>
-        <div class="grid" id="musicGrid">
-            <!-- Les cartes seront générées par JS -->
-        </div>
+
+        <div class="hero-actions" id="hero-actions"><!-- Boutons injectés --></div>
+        <button class="btn-ghost scroll-all" id="btn-browse-all" type="button">Parcourir tout ↓</button>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </section>
+  <p class="results-bar" id="results-count" aria-live="polite"></p>
+  <!-- BARRE DE FILTRES (sticky sous nav, après hero) -->
+  <section class="filters-bar" aria-label="Filtres musique">
+    <div class="filters-inner">
+      <div class="segmented" role="tablist">
+        <button class="seg-item active filter-btn" data-filter="all" aria-pressed="true">Tous</button>
+        <button class="seg-item filter-btn" data-filter="projet" aria-pressed="false">Projets</button>
+        <button class="seg-item filter-btn" data-filter="single" aria-pressed="false">Singles</button>
+        <button class="seg-item filter-btn" data-filter="feat" aria-pressed="false">Featuring</button>
+        <button class="seg-item filter-btn" data-filter="clip" aria-pressed="false">Clips</button>
+        <button class="seg-item filter-btn" data-filter="produced" aria-pressed="false">
+          <img src="../img/prod-ns-piano.svg" alt="Prod Noslow" class="seg-icon"> Prod
+        </button>
+      </div>
+
+      <div class="filters-tools">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input id="search-input" type="search" placeholder="Recherche…" autocomplete="off">
+        </div>
+        <select id="sort-select" aria-label="Tri">
+          <option value="date">Récents</option>
+            <option value="alpha">A → Z</option>
+            <option value="type">Type</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <main class="music-main" aria-label="Catalogue musique">
+    <section id="music-grid" class="music-grid" aria-live="polite"></section>
+  </main>
+
+  <!-- FOOTER RÉSEAUX -->
+  <footer class="social-bar larger" aria-label="Réseaux sociaux">
+    <p class="social-label">Suivre</p>
+    <nav class="social-links">
+      <a href="https://instagram.com/tonprofil" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4.4"/>
+          <circle cx="17.2" cy="6.8" r="1.3"/>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/@tonprofil" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 12s0-3.6-.5-5.3c-.3-1-1.1-1.8-2.1-2.1C17.6 4 12 4 12 4s-5.6 0-7.4.6c-1 .3-1.8 1.1-2.1 2.1C2 8.4 2 12 2 12s0 3.6.5 5.3c.3 1 1.1 1.8 2.1 2.1C6.4 20 12 20 12 20s5.6 0 7.4-.6c1-.3 1.8-1.1 2.1-2.1.5-1.7.5-5.3.5-5.3Z"/>
+          <path d="m10 15 5-3-5-3v6Z" fill="#fff"/>
+        </svg>
+      </a>
+      <a href="https://open.spotify.com/artist/tonid" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 9.5c2.7-.6 5.4-.4 8 .6M8.5 12.1c2.3-.4 4.6-.3 6.8.5M9 14.6c1.8-.3 3.5-.2 5.2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        </svg>
+      </a>
+      <a href="https://tiktok.com/@tonprofil" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14.5 3c.2 1.8 1.3 3.3 3.4 3.5v2.3c-1.4.1-2.6-.3-3.6-.9v5.1a5.9 5.9 0 1 1-5.9-5.9"/>
+        </svg>
+      </a>
+    </nav>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* Ajout simple pour l'état 'scrolled' (ombre nav) */
+    window.addEventListener('scroll', ()=>{
+      if (window.scrollY > 4) document.body.classList.add('scrolled');
+      else document.body.classList.remove('scrolled');
+    }, {passive:true});
+  </script>
 </body>
 </html>
