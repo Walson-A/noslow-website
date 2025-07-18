@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Noslow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #f9f7f4;
+      color: #161616;
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 32px 22px 0 22px;
+    }
+    .home-btn {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      color: #FFA632;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      gap: 8px;
+      transition: color .14s;
+    }
+    .home-btn:hover { color: #E07000; }
+    .main-contact {
+      max-width: 420px;
+      margin: 44px auto 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 22px 0 rgba(200,170,80,0.10);
+      padding: 30px 28px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      animation: fadeUp 0.8s cubic-bezier(0.3,1.4,0.4,1);
+    }
+    .contact-choice {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 18px;
+      justify-content: center;
+    }
+    .contact-choice button {
+      background: #FFD273;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 32px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #161616;
+      box-shadow: 0 2px 8px #FFE3B0;
+      cursor: pointer;
+      transition: background .18s, color .18s, transform .13s;
+    }
+    .contact-choice button:hover {
+      background: #F9B24A;
+      color: #fff;
+      transform: scale(1.04);
+    }
+    .form-block, .networks-block {
+      margin-top: 16px;
+      display: none;
+    }
+    .form-block.active, .networks-block.active { display: block; }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    input, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1.5px solid #FFE3B0;
+      padding: 12px;
+      background: #fdf7eb;
+      color: #1d1d1d;
+      outline: none;
+      resize: none;
+      transition: border .15s;
+    }
+    input:focus, textarea:focus { border-color: #FFD273; }
+    textarea { min-height: 90px; }
+    .newsletter-check {
+      font-size: 0.98rem;
+      color: #7c6b52;
+      margin-top: -7px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .submit-btn {
+      background: linear-gradient(90deg,#FFD273 60%,#F9B24A 100%);
+      border: none;
+      border-radius: 9px;
+      color: #1c1000;
+      font-size: 1.07rem;
+      font-weight: 700;
+      padding: 14px 0;
+      cursor: pointer;
+      margin-top: 5px;
+      box-shadow: 0 2px 8px #FFE3B0;
+      transition: background .19s, color .16s;
+    }
+    .submit-btn:hover { background: #F9B24A; color: #fff; }
+    .or-divider {
+      text-align: center;
+      margin: 20px 0 8px 0;
+      color: #ccb579;
+      font-size: 1.08rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .networks-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin: 16px 0 0 0;
+    }
+    .network-link {
+      display: inline-block;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #f6eee1;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px #ffe6b3;
+      transition: background .16s, transform .11s;
+      font-size: 1.5rem;
+      color: #E07000;
+    }
+    .network-link:hover {
+      background: #FFD273;
+      color: #fff;
+      transform: scale(1.11);
+    }
+    @media (max-width: 650px) {
+      .main-contact { padding: 18px 4vw; }
+      .header { padding: 20px 8px 0 8px; }
+    }
+    @keyframes fadeUp {
+      0% {opacity:0; transform: translateY(45px) scale(0.98);}
+      80% {opacity:1;}
+      100% {opacity:1; transform: translateY(0) scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="home-btn" onclick="window.location.href='index.html'">
+      <svg width="22" height="22" fill="none" viewBox="0 0 22 22"><path fill="currentColor" d="M9.37 3.12a2.7 2.7 0 0 1 3.26 0l5.32 4.02c.67.5 1.05 1.3 1.05 2.13v6.91A3.33 3.33 0 0 1 15.67 19H6.33A3.33 3.33 0 0 1 3 16.18V9.27c0-.83.38-1.63 1.05-2.13L9.37 3.1Zm2.17 1.4a1.1 1.1 0 0 0-1.37 0L4.85 8.54a.73.73 0 0 0-.29.58v6.91c0 1.29 1.04 2.33 2.33 2.33h9.34c1.29 0 2.33-1.04 2.33-2.33V9.12a.73.73 0 0 0-.29-.58l-5.32-4.02Z"/></svg>
+      Accueil
+    </button>
+    <span style="font-size:1.12rem;font-weight:700;color:#E07000;">Contact</span>
+  </div>
+  <div class="main-contact">
+    <div class="contact-choice">
+      <button id="btnForm">Envoyer un message</button>
+      <button id="btnNet">Réseaux sociaux</button>
+    </div>
+    <div class="form-block active" id="formBlock">
+      <form action="https://formspree.io/f/manbnlyk" method="POST" autocomplete="off">
+        <input type="text" name="objet" placeholder="Objet" required>
+        <textarea name="message" placeholder="Votre message..." required></textarea>
+        <input type="email" name="email" placeholder="Votre email" required>
+        <label class="newsletter-check">
+          <input type="checkbox" name="newsletter" value="oui">
+          Je souhaite recevoir la newsletter Noslow
+        </label>
+        <button class="submit-btn" type="submit">Envoyer</button>
+      </form>
+    </div>
+    <div class="or-divider">ou</div>
+    <div class="networks-block" id="netBlock">
+      <div class="networks-row">
+        <!-- Remplace les # par tes vrais liens -->
+        <a class="network-link" href="https://instagram.com/noslow_g" target="_blank" title="Instagram">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:22px;">
+        </a>
+        <a class="network-link" href="https://tiktok.com/@noslow_g" target="_blank" title="TikTok">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" style="width:22px;">
+        </a>
+        <a class="network-link" href="https://youtube.com/@noslow_g" target="_blank" title="YouTube">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style="width:22px;">
+        </a>
+        <a class="network-link" href="https://twitter.com/noslow_g" target="_blank" title="Twitter">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter" style="width:22px;">
+        </a>
+        <a class="network-link" href="https://linktr.ee/noslow_g    " target="_blank" title="Linktree">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linktree.svg" alt="Linktree" style="width:22px;">
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Switch entre Form et Réseaux
+    const btnForm = document.getElementById('btnForm');
+    const btnNet = document.getElementById('btnNet');
+    const formBlock = document.getElementById('formBlock');
+    const netBlock = document.getElementById('netBlock');
+    btnForm.onclick = () => {
+      formBlock.classList.add('active');
+      netBlock.classList.remove('active');
+    };
+    btnNet.onclick = () => {
+      netBlock.classList.add('active');
+      formBlock.classList.remove('active');
+    };
+  </script>
+</body>
+</html>
