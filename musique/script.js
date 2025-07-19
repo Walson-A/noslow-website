@@ -285,6 +285,34 @@ window.addEventListener('keydown', e=>{
   }
 });
 
+// === Mobile nav toggle ===
+(function(){
+  const btn = document.querySelector('.nav-toggle');
+  if(!btn) return;
+  btn.addEventListener('click', ()=>{
+    const open = document.body.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // Fermer le menu si on clique un lien
+  document.addEventListener('click', e=>{
+    if(!document.body.classList.contains('nav-open')) return;
+    if(e.target.closest('.main-nav .nav-link')){
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded','false');
+    }
+  });
+
+  // Fermer sur ESC
+  window.addEventListener('keydown', e=>{
+    if(e.key === 'Escape' && document.body.classList.contains('nav-open')){
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded','false');
+      btn.focus();
+    }
+  });
+})();
+
 /* ========= INIT ========= */
 (function init(){
   bindFilterButtons();

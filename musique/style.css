@@ -957,3 +957,157 @@ body.condensed .hero-inner { gap:28px; }
   font-weight: 600;
 }
 
+/* ========== MOBILE NAV + FILTER SCROLL PATCH ========== */
+
+/* --- Hamburger button --- */
+.nav-toggle {
+  display:none;
+  position:relative;
+  width:40px; height:34px;
+  border:none;
+  background:rgba(255,255,255,0.55);
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:10px;
+  cursor:pointer;
+  padding:6px 8px;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .3s, box-shadow .3s;
+}
+.nav-toggle span {
+  position:relative;
+  display:block;
+  height:2.6px;
+  width:100%;
+  background:#222;
+  border-radius:2px;
+  margin:4.2px 0;
+  transition:transform .4s cubic-bezier(.55,.2,.2,1), opacity .3s;
+}
+body.nav-open .nav-toggle span:nth-child(1){ transform:translateY(6.8px) rotate(45deg); }
+body.nav-open .nav-toggle span:nth-child(2){ opacity:0; }
+body.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-6.8px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(204,75,52,0.35); }
+
+/* --- Mobile / Small breakpoints --- */
+@media (max-width:760px){
+  .app-bar {
+    flex-wrap:wrap;
+    padding:10px 16px;
+    row-gap:12px;
+    align-items:flex-start;
+  }
+  .bar-left {
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .nav-toggle { display:block; }
+
+  /* Navigation devient un panneau glissant */
+  .main-nav {
+    position:fixed;
+    top:0; left:0; right:0;
+    padding:84px 28px 32px; /* laisse la place à la status bar + app bar */
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(20px) saturate(1.06);
+    -webkit-backdrop-filter:blur(20px) saturate(1.06);
+    transform:translateY(-105%);
+    transition:transform .55s cubic-bezier(.65,.05,.28,.99);
+    z-index:120;
+  }
+  body.nav-open .main-nav { transform:translateY(0); }
+  body.nav-open { overflow:hidden; } /* empêche le scroll derrière */
+
+  .nav-link {
+    font-size:1.05rem;
+    padding:10px 0;
+  }
+  .nav-link::after { bottom:-4px; }
+
+  /* --- Filtres / outils réorganisés --- */
+  .bar-right {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+
+  /* Segmented horizontal scroll */
+  .segmented {
+    order:1;
+    width:100%;
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:6px;
+    padding:6px 6px 8px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-radius:40px;
+    position:relative;
+  }
+  .segmented::-webkit-scrollbar { display:none; }
+
+  /* Masques (edges) pour indiquer scrollable */
+  .segmented::before,
+  .segmented::after {
+    content:'';
+    position:absolute;
+    top:0; bottom:0;
+    width:32px;
+    pointer-events:none;
+    z-index:2;
+  }
+  .segmented::before {
+    left:0;
+    background:linear-gradient(90deg,var(--surface) 0%, rgba(255,255,255,0) 95%);
+  }
+  .segmented::after {
+    right:0;
+    background:linear-gradient(-90deg,var(--surface) 0%, rgba(255,255,255,0) 95%);
+  }
+
+  .seg-item {
+    flex:0 0 auto;
+    padding:8px 14px;
+    font-size:.70rem;
+    white-space:nowrap;
+  }
+
+  /* Outils sous les filtres */
+  .tools {
+    order:2;
+    width:100%;
+    display:flex;
+    gap:10px;
+  }
+  .search-box {
+    flex:1;
+    min-width:0;
+  }
+  #sort-select {
+    flex:0 0 auto;
+  }
+
+  /* Hero déjà centré dans ta version – ajuste si besoin */
+  .hero {
+    padding:40px 20px;
+    min-height:240px;
+  }
+  .hero-inner { gap:26px; }
+  .hero-media img { width:150px; height:150px; }
+}
+
+/* Encore plus petit : réduction padding pills */
+@media (max-width:480px){
+  .seg-item { padding:7px 12px; font-size:.66rem; }
+  .search-box input { width:100%; }
+}
+
