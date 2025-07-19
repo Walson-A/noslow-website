@@ -285,33 +285,53 @@ window.addEventListener('keydown', e=>{
   }
 });
 
-// === Mobile nav toggle ===
+// === Mobile Nav Toggle + Close Button ===
 (function(){
-  const btn = document.querySelector('.nav-toggle');
-  if(!btn) return;
-  btn.addEventListener('click', ()=>{
-    const open = document.body.classList.toggle('nav-open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const toggle = document.querySelector('.nav-toggle');
+  const nav    = document.getElementById('mobile-nav');
+  const closeBtn = nav ? nav.querySelector('.nav-close') : null;
+  if(!toggle || !nav) return;
+
+  function openNav(){
+    document.body.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded','true');
+    // focus sur le premier lien après animation
+    setTimeout(()=>{
+      const firstLink = nav.querySelector('.nav-link');
+      firstLink && firstLink.focus();
+    }, 250);
+  }
+  function closeNav(){
+    document.body.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.focus();
+  }
+  toggle.addEventListener('click', ()=>{
+    if(document.body.classList.contains('nav-open')) closeNav();
+    else openNav();
+  });
+  closeBtn && closeBtn.addEventListener('click', closeNav);
+
+  // Fermer si on clique un lien
+  nav.addEventListener('click', e=>{
+    if(e.target.classList.contains('nav-link')) closeNav();
   });
 
-  // Fermer le menu si on clique un lien
-  document.addEventListener('click', e=>{
-    if(!document.body.classList.contains('nav-open')) return;
-    if(e.target.closest('.main-nav .nav-link')){
-      document.body.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded','false');
-    }
-  });
-
-  // Fermer sur ESC
+  // ESC ferme
   window.addEventListener('keydown', e=>{
-    if(e.key === 'Escape' && document.body.classList.contains('nav-open')){
-      document.body.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded','false');
-      btn.focus();
+    if(e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      closeNav();
     }
   });
+
+  // (Optionnel) Fermer en scroll important
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 120 && document.body.classList.contains('nav-open')) {
+      closeNav();
+    }
+  }, { passive:true });
 })();
+
 
 /* ========= INIT ========= */
 (function init(){

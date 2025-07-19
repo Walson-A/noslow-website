@@ -1111,3 +1111,131 @@ body.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-6.8px) rotate
   .search-box input { width:100%; }
 }
 
+/* === MOBILE GAP FIX (compact) === */
+@media (max-width:760px){
+  .app-bar{
+    row-gap:4px !important;      /* était 12px */
+    padding-bottom:8px !important;
+  }
+  .bar-right{
+    gap:8px !important;
+    margin-top:0 !important;
+  }
+  .segmented{
+    margin:0 !important;
+    padding-top:4px !important;
+    padding-bottom:6px !important;
+  }
+  .tools{
+    margin:0 !important;
+  }
+  .search-box{
+    margin:0 !important;
+  }
+}
+
+/* ===== MOBILE NAV DRAWER + CLOSE BUTTON PATCH ===== */
+.nav-toggle {
+  display:none;
+  position:relative;
+  width:42px; height:38px;
+  background:rgba(255,255,255,0.65);
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:14px;
+  cursor:pointer;
+  padding:6px 8px;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .35s, box-shadow .35s;
+}
+.nav-toggle span {
+  display:block;
+  height:3px;
+  width:100%;
+  background:#222;
+  border-radius:2px;
+  margin:5px 0;
+  transition:transform .45s cubic-bezier(.6,.05,.3,1), opacity .3s;
+}
+.nav-toggle:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(204,75,52,.35); }
+
+body.nav-open .nav-toggle span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+body.nav-open .nav-toggle span:nth-child(2){ opacity:0; }
+body.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+/* Drawer (réutilise .main-nav) */
+@media (max-width:760px){
+  .nav-toggle { display:block; }
+  .main-nav {
+    position:fixed;
+    inset:0 0 auto 0;
+    top:0;
+    transform:translateY(-105%);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding:92px 28px 40px;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(26px) saturate(1.05);
+    -webkit-backdrop-filter:blur(26px) saturate(1.05);
+    transition:transform .55s cubic-bezier(.7,.05,.25,1);
+    z-index:140;
+    overflow-y:auto;
+  }
+  body.nav-open .main-nav { transform:translateY(0); }
+
+  /* Bouton croix */
+  .nav-close {
+    position:absolute;
+    top:18px;
+    right:20px;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:rgba(0,0,0,0.06);
+    color:#222;
+    font:600 1.05rem/1 'Inter',sans-serif;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .3s, transform .3s;
+  }
+  .nav-close:hover { background:rgba(0,0,0,0.12); }
+  .nav-close:active { transform:scale(.92); }
+  .nav-close:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(204,75,52,.35); }
+
+  .main-nav .nav-link {
+    font-size:1.05rem;
+    padding:10px 0;
+    color:#222;
+  }
+  .main-nav .nav-link.is-current { color:var(--accent); }
+  .main-nav .nav-link::after { bottom:-6px; }
+
+  /* Empêcher scroll page derrière */
+  body.nav-open { overflow:hidden; }
+}
+
+/* Micro réglage espace dessous la barre après ajout toggle */
+@media (max-width:760px){
+  .app-bar {
+    align-items:center;
+    padding-top:10px;
+    padding-bottom:10px;
+  }
+}
+
+/* === FIX: cacher le bouton de fermeture (nav-close) sur desktop === */
+.nav-close {
+  display: none !important;
+}
+
+@media (max-width:760px) {
+  .nav-close {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
