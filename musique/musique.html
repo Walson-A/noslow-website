@@ -9,55 +9,43 @@
 </head>
 <body class="music-page">
 
-  <!-- APP BAR (Navigation principale) -->
+  <!-- ========== APP BAR ========== -->
   <header class="app-bar" role="banner">
-    <div class="bar-left">
+    <div class="brand-block">
       <a href="../index.html" class="brand" aria-label="Accueil Noslow">Noslow</a>
-      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-controls="main-nav" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <button type="button" class="nav-close" aria-label="Fermer le menu">✕</button>
-      <nav class="main-nav" aria-label="Navigation principale">
-        <a href="../index.html" class="nav-link">
-          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Accueil</span>
-        </a>
-        <a href="../musique/musique.html" class="nav-link is-current">
-          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Musique</span>
-        </a>
-        <a href="../beats.html" class="nav-link">
-          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Beats</span>
-        </a>
-        <a href="../services.html" class="nav-link">
-          <span class="nav-ico" aria-hidden="true"></span><span class="nav-label">Services</span>
-        </a>
-        <a href="../contact.html" class="nav-link">
-          <span class="nav-ico" aria-hidden="true"> </span><span class="nav-label">Contact</span>
-        </a>
-      </nav>
     </div>
+
+    <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+      <button type="button" class="nav-close" aria-label="Fermer le menu">✕</button>
+      <a href="../index.html" class="nav-link">Accueil</a>
+      <a href="../musique/musique.html" class="nav-link is-current">Musique</a>
+      <a href="../beats.html" class="nav-link">Beats</a>
+      <a href="../services.html" class="nav-link">Services</a>
+      <a href="../contact.html" class="nav-link">Contact</a>
+    </nav>
   </header>
 
-  <!-- HERO dernière sortie (auto – script déjà dans script.js) -->
-  <section class="hero hero-mini" id="hero-release" aria-label="Dernière sortie">
+  <!-- ========== HERO (dernière sortie) – masqué sur très petit mobile ========== -->
+  <section class="hero" id="hero-release" aria-label="Dernière sortie">
     <div class="hero-inner">
       <div class="hero-media">
         <img id="hero-cover" src="" alt="Cover dernière sortie">
       </div>
       <div class="hero-meta">
-        <p class="hero-badge">NOUVEAUTÉ</p>
-
-        <div class="hero-heading">
-          <h1 class="hero-title" id="hero-title">Titre</h1>
-          <span class="hero-artist" id="hero-artist">Artiste</span>
-        </div>
-
-        <div class="hero-actions" id="hero-actions"><!-- Boutons injectés --></div>
+        <p class="hero-badge" id="hero-badge">NOUVEAUTÉ</p>
+        <h1 class="hero-title" id="hero-title">Titre</h1>
+        <p class="hero-artist" id="hero-artist">Artiste</p>
+        <div class="hero-actions" id="hero-actions"></div>
         <button class="btn-ghost scroll-all" id="btn-browse-all" type="button">Parcourir tout ↓</button>
       </div>
     </div>
   </section>
-  <p class="results-bar" id="results-count" aria-live="polite"></p> 
-  <!-- BARRE DE FILTRES (sticky sous nav, après hero) -->
+
+  <!-- ========== BARRE FILTRES + OUTILS (sticky) ========== -->
   <section class="filters-bar" aria-label="Filtres musique">
     <div class="filters-inner">
       <div class="segmented" role="tablist">
@@ -67,7 +55,7 @@
         <button class="seg-item filter-btn" data-filter="feat" aria-pressed="false">Featuring</button>
         <button class="seg-item filter-btn" data-filter="clip" aria-pressed="false">Clips</button>
         <button class="seg-item filter-btn" data-filter="produced" aria-pressed="false">
-          <img src="../img/prod-ns-piano.svg" alt="Prod Noslow" class="seg-icon"> Prod
+          <img src="../img/prod-ns.svg" alt="Prod Noslow" class="seg-icon">Prod
         </button>
       </div>
 
@@ -75,27 +63,27 @@
         <div class="search-box">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
-            <line x1="16.5" y1="16.5" x2="21" y2="21"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <input id="search-input" type="search" placeholder="Recherche…" autocomplete="off">
         </div>
         <select id="sort-select" aria-label="Tri">
           <option value="date">Récents</option>
-            <option value="alpha">A → Z</option>
-            <option value="type">Type</option>
+          <option value="alpha">A → Z</option>
+          <option value="type">Type</option>
         </select>
       </div>
     </div>
+    <p class="results-bar" id="results-count" aria-live="polite"></p>
   </section>
 
-  <!-- GRID -->
+  <!-- ========== GRID ========== -->
   <main class="music-main" aria-label="Catalogue musique">
     <section id="music-grid" class="music-grid" aria-live="polite"></section>
   </main>
 
-  <!-- FOOTER RÉSEAUX -->
-  <footer class="social-bar larger" aria-label="Réseaux sociaux">
+  <!-- ========== FOOTER RÉSEAUX ========== -->
+  <footer class="social-bar" aria-label="Réseaux sociaux">
     <p class="social-label">Suivre</p>
     <nav class="social-links">
       <a href="https://instagram.com/tonprofil" aria-label="Instagram">
@@ -126,12 +114,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    /* Ajout simple pour l'état 'scrolled' (ombre nav) */
-    window.addEventListener('scroll', ()=>{
-      if (window.scrollY > 4) document.body.classList.add('scrolled');
-      else document.body.classList.remove('scrolled');
-    }, {passive:true});
-  </script>
 </body>
 </html>
