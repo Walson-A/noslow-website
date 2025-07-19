@@ -519,6 +519,92 @@ body.condensed .hero-inner{gap:30px;}
 .social-links a:focus-visible{outline:none;box-shadow:var(--focus-ring);}
 .social-links svg{width:26px;height:26px;fill:currentColor;stroke:currentColor;stroke-width:.5;}
 
+/* === PATCH: hamburger à droite + gap mobile supprimé + padding haut filtres desktop === */
+
+/* App bar réorganisation */
+.app-bar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+}
+
+.brand-block {
+  display:flex;
+  align-items:center;
+  gap:48px;
+}
+
+/* Le bouton hamburger déjà stylé : on s’assure qu’il peut flotter à droite */
+.nav-toggle {
+  margin-left:auto;
+}
+
+/* Filtres : ajouter un peu d'air en haut sur desktop */
+.filters-inner {
+  padding-top:10px;              /* ajoute l’espace au-dessus des pills */
+  padding-bottom:6px;
+}
+
+.segmented {
+  margin-top:2px;                /* décale légèrement l’ensemble pour un ratio visuel équilibré */
+}
+
+/* Affiner la hauteur objective des pills (elles restent centrées) */
+.seg-item {
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+}
+
+/* Mobile : éliminer le “petit espace” (le gap venait du top offset + padding) */
+@media (max-width:640px) {
+  /* Hero masqué => la barre filtres ne doit pas réserver de hauteur avant l’ancrage */
+  .hero { display:none; }
+
+  .filters-bar {
+    top:62px; /* exactement la hauteur mobile de l'app-bar */
+  }
+
+  /* Réduire padding vertical pour ne pas créer de bande vide */
+  .filters-inner {
+    padding-top:6px;
+    padding-bottom:6px;
+  }
+
+  .segmented {
+    padding-top:4px;
+    padding-bottom:6px;
+  }
+}
+
+/* Sécurité : si un espace persiste à cause du border-bottom */
+@media (max-width:640px) {
+  .app-bar {
+    border-bottom:1px solid rgba(0,0,0,0.05);
+  }
+  .filters-bar {
+    margin-top:0;
+  }
+}
+
+/* Affiner nav sur mobile : hamburger à droite, bloc brand seul à gauche */
+@media (max-width:760px) {
+  .brand-block {
+    gap:20px;
+  }
+  .nav-toggle {
+    order:2;
+  }
+  body.nav-open .nav-toggle {
+    /* Option: atténuer le hamburger pendant l'ouverture */
+    opacity:0.35;
+  }
+}
+
+.filters-inner { padding-top:4px; padding-bottom:4px; }
+.segmented { padding-top:3px; padding-bottom:5px; }
+
 /* ---------- Animations ---------- */
 @keyframes fadeIn{
   0%{opacity:0;transform:translateY(24px) scale(.96);}
